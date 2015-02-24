@@ -2,6 +2,7 @@
 (maybe-require-package 'js2-mode)
 (maybe-require-package 'ac-js2)
 (maybe-require-package 'coffee-mode)
+(maybe-require-package 'tern)
 (require-package 'js-comint)
 
 (defcustom preferred-javascript-mode
@@ -33,7 +34,7 @@
       (set (make-local-variable 'js2-mode-show-parse-errors) t)
       (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
   (add-hook 'js2-mode-hook 'sanityinc/disable-js2-checks-if-flycheck-active)
-
+  (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
   (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
 
   (setq-default
