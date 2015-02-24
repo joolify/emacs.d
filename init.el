@@ -32,6 +32,9 @@
 ;;----------------------------------------------------------------------------
 (require 'init-preload-local nil t)
 
+(define-prefix-command 'mode-specific-map)
+(global-set-key (kbd "C-c") 'mode-specific-map)
+
 ;;----------------------------------------------------------------------------
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
@@ -41,6 +44,17 @@
 (require-package 'diminish)
 (require-package 'scratch)
 (require-package 'mwe-log-commands)
+
+(require 'init-evil)
+(require 'init-helm)
+(require 'init-helm-swoop)
+(require 'init-ace)
+(require 'init-hlinum)
+(require 'init-iedit)
+(require 'init-paradox)
+(require 'init-powerline)
+(require 'init-c)
+(require 'init-yasnippet)
 
 (require 'init-frame-hooks)
 (require 'init-xterm)
