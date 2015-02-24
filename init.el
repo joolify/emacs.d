@@ -8,7 +8,11 @@
 (when (version<= emacs-version "24")
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(setq-default default-directory "/Volumes/Data/Dropbox/emacs.d")
+(add-to-list 'load-path (expand-file-name "/Volumes/Data/Dropbox/emacs.d/lisp" user-emacs-directory))
+(setq load-path (cons "/Volumes/Data/Applications/Emacs/Contents/Resources/lisp" load-path))
+(setq load-path (cons "/Volumes/Data/Applications/Emacs/Contents/Resources/lisp/org" load-path))
+
 (require 'init-benchmarking) ;; Measure startup time
 
 (defconst *spell-check-support-enabled* nil) ;; Enable with t if you prefer
