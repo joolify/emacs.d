@@ -104,6 +104,7 @@
 (require 'init-powerline)
 (require 'init-c)
 (require 'init-yasnippet)
+(require 'init-color-id)
 
 (require 'init-paredit)
 (require 'init-lisp)

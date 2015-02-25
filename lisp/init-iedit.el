@@ -16,5 +16,7 @@
           (narrow-to-defun)
           (iedit-start (current-word) (point-min) (point-max)))))))
 
+(define-key global-map (kbd "C-;") 'iedit-mode)
+
 (provide 'init-iedit)
 ;;; init-iedit.el ends here
