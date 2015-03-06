@@ -96,6 +96,8 @@
 
 (require 'init-evil)
 (require 'init-helm)
+(require 'init-helm-flycheck)
+(require 'init-helm-google)
 (require 'init-helm-swoop)
 (require 'init-ace)
 (require 'init-hlinum)
@@ -105,6 +107,15 @@
 (require 'init-c)
 (require 'init-yasnippet)
 (require 'init-color-id)
+(require 'init-gnuplot)
+(require 'init-snippets)
+(require 'init-calfw)
+(require 'init-dictionary)
+(require 'init-google)
+(require 'init-erc)
+(require 'init-mu4e)
+(require 'init-move-text)
+
 
 (require 'init-paredit)
 (require 'init-lisp)

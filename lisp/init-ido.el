@@ -1,8 +1,12 @@
 ;; Use C-f during file selection to switch to regular find-file
-(require 'ido)
-(ido-mode t)
-(ido-everywhere t)
+(require-package 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights
 (setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
 (setq ido-use-filename-at-point nil)
 (setq ido-auto-merge-work-directories-length 0)
 (setq ido-use-virtual-buffers t)
@@ -23,8 +27,5 @@
 
 ;; http://www.reddit.com/r/emacs/comments/21a4p9/use_recentf_and_ido_together/cgbprem
 (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [up] 'previous-history-element)))
-
-
-
 
 (provide 'init-ido)
