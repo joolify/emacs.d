@@ -96,8 +96,6 @@
 
 (require 'init-evil)
 (require 'init-helm)
-(require 'init-helm-flycheck)
-(require 'init-helm-google)
 (require 'init-helm-swoop)
 (require 'init-ace)
 (require 'init-hlinum)
@@ -115,7 +113,8 @@
 (require 'init-erc)
 (require 'init-mu4e)
 (require 'init-move-text)
-
+(require 'init-magit)
+(require 'init-projectile)
 
 (require 'init-paredit)
 (require 'init-lisp)

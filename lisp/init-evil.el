@@ -8,6 +8,7 @@
 (require-package 'evil-paredit)
 (require-package 'evil-terminal-cursor-changer)
 (require-package 'evil-visualstar)
+(require-package 'evil-exchange)
 
 (evil-mode 1)
 (global-evil-surround-mode 1)
@@ -21,6 +22,10 @@
 ;; terminal-cursor-changer
 (unless (display-graphic-p)
   (require 'evil-terminal-cursor-changer))
+
+(setq evil-exchange-key (kbd "zx"))
+(setq evil-exchange-cancel-key (kbd "zX"))
+(evil-exchange-install)
 
 (provide 'init-evil)
 ;;; init-evil.el ends here
