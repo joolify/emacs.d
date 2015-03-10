@@ -1,3 +1,5 @@
+(require 'cl)
+
 (defun my:align-by-space(BEG END)
   (interactive "r")
   (align-regexp BEG END "\\(\\s-*\\) " 1 0 1)
@@ -18,4 +20,11 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
+
+
+(defun close-all-buffers ()
+  (interactive)
+  (loop for buffer being the buffers
+     do (kill-buffer buffer)))
+
 (provide 'init-snippets)

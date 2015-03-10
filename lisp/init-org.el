@@ -1,3 +1,5 @@
+;; http://www.newartisans.com/2007/08/using-org-mode-as-a-day-planner/
+;; http://members.optusnet.com.au/~charles57/GTD/gtd_workflow.html
 (when (< emacs-major-version 24)
   (require-package 'org))
 (require-package 'org-fstree)
@@ -6,8 +8,100 @@
   (autoload 'org-mac-grab-link "org-mac-link" nil t)
   (require-package 'org-mac-iCal))
 
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c a") 'org-agenda)
+;; GTD
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+(define-key mode-specific-map [?a] 'org-agenda)
+
+(eval-after-load "org"
+  '(progn
+     (define-prefix-command 'org-todo-state-map)
+
+     (define-key org-mode-map "\C-cx" 'org-todo-state-map)
+
+     (define-key org-todo-state-map "x"
+       #'(lambda nil (interactive) (org-todo "CANCELLED")))
+     (define-key org-todo-state-map "d"
+       #'(lambda nil (interactive) (org-todo "DONE")))
+     (define-key org-todo-state-map "f"
+       #'(lambda nil (interactive) (org-todo "DEFERRED")))
+     (define-key org-todo-state-map "l"
+       #'(lambda nil (interactive) (org-todo "DELEGATED")))
+     (define-key org-todo-state-map "s"
+       #'(lambda nil (interactive) (org-todo "STARTED")))
+     (define-key org-todo-state-map "w"
+       #'(lambda nil (interactive) (org-todo "WAITING")))
+
+     ;; (define-key org-agenda-mode-map "\C-n" 'next-line)
+     ;; (define-key org-agenda-keymap "\C-n" 'next-line)
+     ;; (define-key org-agenda-mode-map "\C-p" 'previous-line)
+     ;; (define-key org-agenda-keymap "\C-p" 'previous-line)
+     ))
+
+
+(setq org-directory "/Volumes/Data/Applications/Emacs/Contents/Resources/lisp/org")
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "/Volumes/Data/Dropbox/emacs.d/org/todo.org" "Tasks")
+         "* TODO %^{Brief Description} %^g\n%?\nAdded: %U\n %i\n")
+        ("j" "Journal" entry (file+datetree "/Volumes/Data/Dropbox/emacs.d/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
+
+(custom-set-variables
+ '(org-agenda-files (quote ("/Volumes/Data/Dropbox/emacs.d/org/todo.org")))
+ '(org-default-notes-file "/Volumes/Data/Dropbox/emacs.d/org/notes.org")
+ '(org-agenda-ndays 7)
+ '(org-deadline-warning-days 14)
+ '(org-agenda-show-all-dates t)
+ '(org-agenda-skip-deadline-if-done t)
+ '(org-agenda-skip-scheduled-if-done t)
+ '(org-agenda-start-on-weekday nil)
+ '(org-reverse-note-order t)
+ '(org-fast-tag-selection-single-key (quote expert))
+ '(org-refile-targets (quote (("todo.org" :maxlevel . 1)
+                              ("someday.org" :level . 2))))
+ '(org-agenda-custom-commands
+   (quote (("d" todo "DELEGATED" nil)
+           ("c" todo "DONE|DEFERRED|CANCELLED" nil)
+           ("w" todo "WAITING" nil)
+           ("W" agenda "" ((org-agenda-ndays 21)))
+           ("A" agenda ""
+            ((org-agenda-skip-function
+              (lambda nil
+                (org-agenda-skip-entry-if (quote notregexp) "\\=.*\\[#A\\]")))
+             (org-agenda-ndays 1)
+             (org-agenda-overriding-header "Today's Priority #A tasks: ")))
+           ("u" alltodo ""
+            ((org-agenda-skip-function
+              (lambda nil
+                (org-agenda-skip-entry-if (quote scheduled) (quote deadline)
+                                          (quote regexp) "\n]+>")))
+             (org-agenda-overriding-header "Unscheduled TODO entries: ")))))))
+
+
+(setq org-tag-alist '(
+                      (:startgroup . nil)
+                      ("@work" . ?w)
+                      ("@home" . ?h)
+                      ("@school" . ?s)
+                      ("@gym" . ?g)
+                      ("@store" . ?i)
+                      (:endgroup . nil)
+                      (:startgroup . nil)
+                      ("@uppsala", ?u)
+                      ("@sthlm", ?t)
+                      (:endgroup . nil)
+                      (:startgroup . nil)
+                      ("laptop" . ?l)
+                      ("phone" . ?p)
+                      (:endgroup . nil)
+                      ))
 
 ;; Various preferences
 (setq org-log-done t

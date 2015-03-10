@@ -1,3 +1,10 @@
+(require-package 'flyspell-lazy)
+(setq ispell-program-name "aspell")
+(add-to-list 'ispell-extra-args "--sug-mode=ultra")
+
+(flyspell-lazy-mode 1)
+
+(flyspell-mode 1)
 ;;----------------------------------------------------------------------------
 ;; Add spell-checking in comments for all programming language modes
 ;;----------------------------------------------------------------------------
@@ -10,6 +17,7 @@
                   ruby-mode-hook
                   yaml-mode
                   python-mode-hook
+                  latex-mode-hook
                   shell-mode-hook
                   php-mode-hook
                   css-mode-hook

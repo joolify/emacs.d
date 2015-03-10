@@ -1,4 +1,6 @@
-
+;;; package --- Summary
+;;; Commentary:
+;;; Code:
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
@@ -12,6 +14,11 @@
 (add-to-list 'load-path (expand-file-name "/Volumes/Data/Dropbox/emacs.d/lisp" user-emacs-directory))
 (setq load-path (cons "/Volumes/Data/Applications/Emacs/Contents/Resources/lisp" load-path))
 (setq load-path (cons "/Volumes/Data/Applications/Emacs/Contents/Resources/lisp/org" load-path))
+
+;; start maximized
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
 
 (require 'init-benchmarking) ;; Measure startup time
 
@@ -94,6 +101,7 @@
 (require 'init-rails)
 (require 'init-sql)
 
+(require 'init-after-macro)
 (require 'init-evil)
 (require 'init-helm)
 (require 'init-helm-swoop)
@@ -115,6 +123,10 @@
 (require 'init-move-text)
 (require 'init-magit)
 (require 'init-projectile)
+(require 'init-csharp)
+(require 'init-discover)
+;; (require 'init-hydra)
+;; (require 'init-diminish)
 
 (require 'init-paredit)
 (require 'init-lisp)
